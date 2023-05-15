@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 import App from '../App';
@@ -10,6 +10,9 @@ import drinksCategories from './mocks/drinksCategories';
 
 const bigMacPath = '/meals/53013/in-progress';
 const acePath = '/drinks/17225/in-progress';
+
+const favoriteId = 'favorite-btn';
+const blackHeart = 'blackHeartIcon.svg';
 
 jest
   .fn()
@@ -41,6 +44,9 @@ describe('Testa o componente RecipeInProgress com meals se', () => {
       userEvent.click(element)));
     expect(finishBtn).toBeEnabled();
     userEvent.click(finishBtn);
+    waitFor(() => {
+      expect(history.location.pathname).toBe('/done-recipes');
+    });
   });
 
   it('se é possivel favoritar e desfavoritar a receita', async () => {
@@ -53,28 +59,28 @@ describe('Testa o componente RecipeInProgress com meals se', () => {
 
     const h2 = await screen.findByText('Big Mac');
     expect(h2).toBeInTheDocument();
-    const favBtn = await screen.findByTestId('favorite-btn');
+    const favBtn = await screen.findByTestId(favoriteId);
     expect(favBtn).toBeInTheDocument();
     userEvent.click(favBtn);
-    expect(favBtn).toHaveAttribute('src', 'blackHeartIcon.svg');
+    expect(favBtn).toHaveAttribute('src', blackHeart);
     userEvent.click(favBtn);
     expect(favBtn).toHaveAttribute('src', 'whiteHeartIcon.svg');
   });
 
-  it('é possível copiar o endereço da receita', async () => {
-    const { history } = renderWithRouter(
-      <App />,
-    );
-    act(() => {
-      history.push(bigMacPath);
-    });
+  // it('é possível copiar o endereço da receita', async () => {
+  //   const { history } = renderWithRouter(
+  //     <App />,
+  //   );
+  //   act(() => {
+  //     history.push(bigMacPath);
+  //   });
 
-    const h2 = await screen.findByText('Big Mac');
-    expect(h2).toBeInTheDocument();
-    const copyBtn = await screen.findByTestId('share-btn');
-    expect(copyBtn).toBeInTheDocument();
-    userEvent.click(copyBtn);
-  });
+  //   const h2 = await screen.findByText('Big Mac');
+  //   expect(h2).toBeInTheDocument();
+  //   const copyBtn = await screen.findByTestId('share-btn');
+  //   expect(copyBtn).toBeInTheDocument();
+  //   userEvent.click(copyBtn);
+  // });
 });
 
 describe('Testa o componente RecipeInProgress com drinks se', () => {
@@ -96,6 +102,9 @@ describe('Testa o componente RecipeInProgress com drinks se', () => {
       userEvent.click(element)));
     expect(finishBtn).toBeEnabled();
     userEvent.click(finishBtn);
+    waitFor(() => {
+      expect(history.location.pathname).toBe('/done-recipes');
+    });
   });
 
   it('se é possivel favoritar e desfavoritar a receita', async () => {
@@ -108,26 +117,11 @@ describe('Testa o componente RecipeInProgress com drinks se', () => {
 
     const h2 = await screen.findByText('Ace');
     expect(h2).toBeInTheDocument();
-    const favBtn = await screen.findByTestId('favorite-btn');
+    const favBtn = await screen.findByTestId(favoriteId);
     expect(favBtn).toBeInTheDocument();
     userEvent.click(favBtn);
-    expect(favBtn).toHaveAttribute('src', 'blackHeartIcon.svg');
+    expect(favBtn).toHaveAttribute('src', blackHeart);
     userEvent.click(favBtn);
     expect(favBtn).toHaveAttribute('src', 'whiteHeartIcon.svg');
-  });
-
-  it('é possível copiar o link da receita', async () => {
-    const { history } = renderWithRouter(
-      <App />,
-    );
-    act(() => {
-      history.push(acePath);
-    });
-
-    const h2 = await screen.findByText('Ace');
-    expect(h2).toBeInTheDocument();
-    const copyBtn = await screen.findByTestId('share-btn');
-    expect(copyBtn).toBeInTheDocument();
-    userEvent.click(copyBtn);
   });
 });

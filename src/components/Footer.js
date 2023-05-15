@@ -17,7 +17,7 @@ function Footer() {
 
   return (
     <div
-      className="footer"
+      className="footer footer-recipe"
     >
       <button
         type="button"

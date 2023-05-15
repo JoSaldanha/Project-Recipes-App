@@ -8,15 +8,10 @@ import drinksIcon from '../images/icone-bebida.png';
 import logo from '../images/alternativeLogoWhite.png';
 import RecipesAppContext from '../context/RecipesAppContext';
 
-function Header({ search, profileUser, children, goBack }) {
+function Header({ search, profileUser, children }) {
   const [searching, setSearching] = useState(false);
-  const { setSearchInput, setLoading } = useContext(RecipesAppContext);
-  const history = useHistory();
+  const { setSearchInput } = useContext(RecipesAppContext);
 
-  const handleClick = () => {
-    history.goBack();
-    setLoading(true);
-  };
   return (
     <div>
       <div className="top-header">

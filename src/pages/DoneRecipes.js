@@ -77,7 +77,7 @@ function DoneRecipes() {
       <div className="all-dones">
         {doneRecipes
         && doneRecipes.map((e, index) => (
-          <div key={ `${e.id}-a` } className="done-card">
+          <div key={ `${e.id}-a` } className="done-card mt-5">
             <Link to={ `/${e.type}s/${e.id}` }>
               <img
                 src={ e.image }

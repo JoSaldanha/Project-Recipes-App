@@ -132,14 +132,13 @@
 }
 
 .done-share-btn {
-  background-color: inherit;
+  background-color: transparent;
   border: none;
   border-radius: 50%;
-  padding: 6px;
   position: absolute;
-  right: -2px;
-  top: -15px;
-  z-index: 998;
+  right: 0%;
+  top: 15%;
+  width: 35px;
 }
 
 .filter-by-meal-btn:focus, .filter-by-drink-btn:focus, .filter-by-all-btn:focus {

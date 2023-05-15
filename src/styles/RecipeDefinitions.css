@@ -69,26 +69,29 @@ li {
 }
 
 .fav-btn {
-  background-color: white;
+  background-color: transparent;
   border: none;
   border-radius: 50%;
   display: inline;
   justify-self: center;
   padding: 15px;
   position: absolute;
-  right: 30px;
+  right: 20%;
+  top: 40%;
+  width: 35px;
 }
 
 
 .share-btn {
-  background-color: white;
+  background-color: transparent;
   border: none;
   border-radius: 50%;
   display: inline;
   justify-self: center;
-  left: 30px;
-  padding: 15px;
+  left: 15%;
   position: absolute;
+  top: 100%;
+  width: 35px;
 }
 
 .header-dif {
